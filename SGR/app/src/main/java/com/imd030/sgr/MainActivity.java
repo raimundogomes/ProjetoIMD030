@@ -8,11 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.imd030.sgr.adapter.RequisicaoAdapter;
-import com.imd030.sgr.bulder.ExamesBulder;
+import com.imd030.sgr.builder.ExamesBulder;
 import com.imd030.sgr.entiitys.Paciente;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.Solicitante;
