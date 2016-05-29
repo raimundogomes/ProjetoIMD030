@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.imd030.sgr.adapter.RequisicaoAdapter;
+import com.imd030.sgr.bulder.ExamesBulder;
 import com.imd030.sgr.entiitys.Paciente;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.Solicitante;
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Requisicao criarRequisicao(String nomeSolicitante, String nomePaciente){
+
         Requisicao requisicao = new Requisicao();
 
         requisicao.setDataRequisicao(new Date());
@@ -95,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
         Paciente paciente = new Paciente();
         paciente.setNome(nomePaciente);
         requisicao.setPaciente(paciente);
+
+        ExamesBulder examesBulder = new ExamesBulder();
+
+        requisicao.setExames(examesBulder.getListaExames());
+        requisicao.getExames().add(examesBulder.adicionaExameSangue());
+        requisicao.getExames().add(examesBulder.adicionaExameUrina());
+
+
 
         Solicitante solicitante = new Solicitante();
         solicitante.setNome(nomeSolicitante);

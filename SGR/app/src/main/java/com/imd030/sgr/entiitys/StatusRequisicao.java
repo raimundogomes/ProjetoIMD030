@@ -5,8 +5,9 @@ package com.imd030.sgr.entiitys;
  */
 public enum StatusRequisicao {
     SOLICITADA (0, "Solicitada"),
-    EXECUCAO   (1, "Execução"),
-    FINALIZADA (2, "Finalizada");
+    EXECUCAO   (1, "Em Execução"),
+    FINALIZADA (2, "Finalizada"),
+    CANCELADA (3, "Cancelada");
 
     private int codigo;
 

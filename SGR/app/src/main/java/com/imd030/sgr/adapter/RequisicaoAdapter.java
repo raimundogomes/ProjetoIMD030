@@ -37,6 +37,11 @@ public class RequisicaoAdapter extends ArrayAdapter<Requisicao>{
         }
 
         //data de requisição
+        TextView textViewNumeroRequesicao = (TextView) view.findViewById(R.id.numeroRequisicao);
+        textViewNumeroRequesicao.setText(requisicao.getNumeroFormatado());
+
+
+        //data de requisição
         TextView textViewDataRequesicao = (TextView) view.findViewById(R.id.text_dataRequisicao);
         textViewDataRequesicao.setText(DateUtils.obterDataPorExtenso(requisicao.getDataRequisicao()));
 
@@ -49,8 +54,8 @@ public class RequisicaoAdapter extends ArrayAdapter<Requisicao>{
         textViewPaciente.setText(requisicao.getPaciente().getNome());
 
         //solicitante
-        TextView textViewSolicitante = (TextView) view.findViewById(R.id.text_solicitante);
-        textViewSolicitante.setText(requisicao.getSolicitante().getNome());
+        TextView textViewSolicitante = (TextView) view.findViewById(R.id.text_exames);
+        textViewSolicitante.setText(requisicao.getExamesFormatados());
 
         return view;
     }

@@ -10,36 +10,22 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/label_dataRequisicao"
+            android:id="@+id/label_numero_req"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data de Requesição: "
-            android:textStyle="bold"/>
+            android:text="Nº"
+            android:textStyle="bold"
+            />
 
+        <TextView
+            android:id="@+id/numeroRequisicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/text_dataRequisicao"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/label_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status: "
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/text_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="wrap_content"  android:layout_margin="3dp"
+            android:gravity="right" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,12 +39,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Paciente: "
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/text_paciente"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"  android:layout_margin="3dp"
+            android:gravity="right" android:layout_gravity="top"/>
 
     </LinearLayout>
 
@@ -69,14 +62,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/label_solicitante"
+            android:id="@+id/label_exames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Solicitante: "
+            android:text="@string/exames"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/text_solicitante"
+            android:id="@+id/text_exames" android:layout_marginLeft="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

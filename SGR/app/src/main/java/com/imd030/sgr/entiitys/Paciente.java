@@ -5,7 +5,10 @@ package com.imd030.sgr.entiitys;
  */
 public class Paciente {
 
-    private String cns; //carteira nacional de saúde
+    /**
+     * carteira nacional de saúde - cns
+     */
+    private String cns;
 
     private String nome;
 

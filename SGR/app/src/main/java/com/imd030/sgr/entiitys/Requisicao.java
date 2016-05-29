@@ -1,11 +1,14 @@
 package com.imd030.sgr.entiitys;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by thiago on 28/05/16.
  */
 public class Requisicao {
+
+    private static final String FORMATO_NUMERO = "%08d";
 
     private Date dataRequisicao;
 
@@ -15,7 +18,22 @@ public class Requisicao {
 
     private StatusRequisicao status;
 
+    private static long numeroGerador = 1;
+
+    private long numero = 1;
+
+    private List<Exame> exames;
+
+    public List<Exame> getExames() {
+        return exames;
+    }
+
+    public void setExames(List<Exame> exames) {
+        this.exames = exames;
+    }
+
     public Requisicao() {
+        numero++;
     }
 
     public Requisicao(Date dataRequisicao, Solicitante solicitante, Paciente paciente, StatusRequisicao status) {
@@ -23,6 +41,7 @@ public class Requisicao {
         this.solicitante = solicitante;
         this.paciente = paciente;
         this.status = status;
+        this.numero = numero++;
     }
 
     public Date getDataRequisicao() {
@@ -57,4 +76,12 @@ public class Requisicao {
         this.status = status;
     }
 
+    public  String getNumeroFormatado() {
+        this.numero = Requisicao.numeroGerador;
+        return String.format(FORMATO_NUMERO, numeroGerador++);
+    }
+
+    public String getExamesFormatados(){
+        return exames.toString();
+    }
 }
