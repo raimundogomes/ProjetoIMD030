@@ -1,9 +1,11 @@
 package com.imd030.sgr.entiitys;
 
+import java.io.Serializable;
+
 /**
  * Created by thiago on 29/05/16.
  */
-public class Paciente {
+public class Paciente implements Serializable {
 
     /**
      * carteira nacional de saúde - cns

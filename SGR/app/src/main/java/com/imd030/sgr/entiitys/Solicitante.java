@@ -1,9 +1,11 @@
 package com.imd030.sgr.entiitys;
 
+import java.io.Serializable;
+
 /**
  * Created by thiago on 29/05/16.
  */
-public class Solicitante {
+public class Solicitante implements Serializable {
 
     private String nome;
 

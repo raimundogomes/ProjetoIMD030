@@ -1,5 +1,6 @@
 package com.imd030.sgr;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,14 +9,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.imd030.sgr.adapter.RequisicaoAdapter;
 import com.imd030.sgr.builder.ExamesBulder;
+import com.imd030.sgr.builder.RequisicaoBuilder;
 import com.imd030.sgr.entiitys.Paciente;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.Solicitante;
 import com.imd030.sgr.entiitys.StatusRequisicao;
+import com.imd030.sgr.utils.Constantes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,10 +48,25 @@ public class MainActivity extends AppCompatActivity {
 
         //listView
         ListView listView = (ListView) findViewById(R.id.list_requisicao);
-        List<Requisicao> requisicoes = gerarRequisicoes();
+        final List<Requisicao> requisicoes = new RequisicaoBuilder().gerarRequisicoes();
 
         final RequisicaoAdapter requisicoesAdapter = new RequisicaoAdapter(this,  requisicoes);
         listView.setAdapter(requisicoesAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapter, View view,
+                                    int position, long id) {
+
+                Requisicao requisicaSelecionada = requisicoes.get(position);
+
+                Intent acao = new Intent(MainActivity.this, RequisicaoDetalheActivity.class);
+
+                acao.putExtra(Constantes.REQUISICAO_DETALHE_ACTIVITY, requisicaSelecionada);
+
+                startActivity(acao);
+
+            }
+        });
     }
 
     @Override
@@ -70,46 +89,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private List<Requisicao> gerarRequisicoes() {
-        List<Requisicao> requisicoes = new ArrayList<Requisicao>();
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 1"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 2"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 3"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 4"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 5"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 6"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 7"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Paciente 8"));
-        return requisicoes;
-    }
-
-    private Requisicao criarRequisicao(String nomeSolicitante, String nomePaciente){
-
-        Requisicao requisicao = new Requisicao();
-
-        requisicao.setDataRequisicao(new Date());
-
-        requisicao.setStatus(StatusRequisicao.SOLICITADA);
-
-        Paciente paciente = new Paciente();
-        paciente.setNome(nomePaciente);
-        requisicao.setPaciente(paciente);
-
-        ExamesBulder examesBulder = new ExamesBulder();
-
-        requisicao.setExames(examesBulder.getListaExames());
-        requisicao.getExames().add(examesBulder.adicionaExameSangue());
-        requisicao.getExames().add(examesBulder.adicionaExameUrina());
-
-
-
-        Solicitante solicitante = new Solicitante();
-        solicitante.setNome(nomeSolicitante);
-        requisicao.setSolicitante(solicitante);
-
-        return requisicao;
     }
 
 }

@@ -1,12 +1,13 @@
 package com.imd030.sgr.entiitys;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by thiago on 28/05/16.
  */
-public class Requisicao {
+public class Requisicao implements Serializable {
 
     private static final String FORMATO_NUMERO = "%08d";
 
@@ -17,8 +18,6 @@ public class Requisicao {
     private Paciente paciente;
 
     private StatusRequisicao status;
-
-    private static long numeroGerador = 1;
 
     private long numero = 1;
 
@@ -76,9 +75,16 @@ public class Requisicao {
         this.status = status;
     }
 
-    public  String getNumeroFormatado() {
-        this.numero = Requisicao.numeroGerador;
-        return String.format(FORMATO_NUMERO, numeroGerador++);
+    public long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(long numero) {
+        this.numero = numero;
+    }
+
+    public String getNumeroFormatado() {
+        return String.format(FORMATO_NUMERO, this.numero);
     }
 
     public String getExamesFormatados(){
