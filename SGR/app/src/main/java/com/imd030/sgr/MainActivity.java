@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.imd030.sgr.adapter.RequisicaoAdapter;
 import com.imd030.sgr.builder.RequisicaoBuilder;
@@ -70,9 +69,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case R.id.menu_sincronizar:
                 exibirMensagemSicronizacao();
-                Toast toast = Toast.makeText(this, "Sicronizando as requisições...",
-                        Toast.LENGTH_LONG);
-                toast.show();
                 break;
 
             default:
