@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">SGR</string>
-    <string name="action_settings">Settings</string>
+    <string name="label_sincronizar">Sincronizar</string>
     <string name="exames">Exames:</string>
     <string name="title_activity_requisicao_detalhe">Requisição</string>
+    <string name="cancelar_requisicao">Cancelar</string>
+    <string name="encaminhar_requisicao">Encaminhar</string>
+    <string name="label_sair">Sair</string>
 </resources>
