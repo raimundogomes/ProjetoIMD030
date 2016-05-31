@@ -1,5 +1,7 @@
 package com.imd030.sgr;
 
+import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,22 +12,23 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.imd030.sgr.adapter.RequisicaoAdapter;
-import com.imd030.sgr.builder.ExamesBulder;
 import com.imd030.sgr.builder.RequisicaoBuilder;
-import com.imd030.sgr.entiitys.Paciente;
 import com.imd030.sgr.entiitys.Requisicao;
-import com.imd030.sgr.entiitys.Solicitante;
-import com.imd030.sgr.entiitys.StatusRequisicao;
 import com.imd030.sgr.utils.Constantes;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+
+    private List<Requisicao> requisicoes = new RequisicaoBuilder().gerarRequisicoes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,36 +40,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         //listView
         ListView listView = (ListView) findViewById(R.id.list_requisicao);
-        final List<Requisicao> requisicoes = new RequisicaoBuilder().gerarRequisicoes();
 
         final RequisicaoAdapter requisicoesAdapter = new RequisicaoAdapter(this,  requisicoes);
+
         listView.setAdapter(requisicoesAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> adapter, View view,
-                                    int position, long id) {
+        listView.setOnItemClickListener(this);
 
-                Requisicao requisicaSelecionada = requisicoes.get(position);
-
-                Intent acao = new Intent(MainActivity.this, RequisicaoDetalheActivity.class);
-
-                acao.putExtra(Constantes.REQUISICAO_DETALHE_ACTIVITY, requisicaSelecionada);
-
-                startActivity(acao);
-
-            }
-        });
     }
 
     @Override
@@ -78,17 +61,59 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.menu_sair:
+                finish();
+                break;
+            case R.id.menu_sincronizar:
+                exibirMensagemSicronizacao();
+                Toast toast = Toast.makeText(this, "Sicronizando as requisições...",
+                        Toast.LENGTH_LONG);
+                toast.show();
+                break;
+
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapter, View view,
+                            int position, long id) {
+
+        Requisicao requisicaSelecionada = requisicoes.get(position);
+
+        Intent acao = new Intent(MainActivity.this, RequisicaoDetalheActivity.class);
+
+        acao.putExtra(Constantes.REQUISICAO_DETALHE_ACTIVITY, requisicaSelecionada);
+
+        startActivity(acao);
+
+    }
+
+    public void exibirMensagemSicronizacao() {
+
+       final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+       dialog.setTitle("Sincronizando as requisições...");
+       dialog.setMessage("Aguarde, por favor.");
+       dialog.setIndeterminate(true);
+       dialog.setCancelable(true);
+       dialog.show();
+
+      long delayInMillis = 2000;
+      Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    dialog.dismiss();
+                }
+            }, delayInMillis);
+
+        }
 
 }
