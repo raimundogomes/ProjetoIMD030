@@ -9,7 +9,7 @@ import android.net.NetworkInfo;
 
 public class DetectaConexao {
 
-    public final static String FALHA_CONEXAO = "SEM CONEXÃO COM A INTERNET. Verifique acesso o acesso e tente novamente";
+    public final static String FALHA_CONEXAO = "SEM CONEXÃO COM A INTERNET. Verifique acesso e tente novamente";
     private Context _context;
 
     public DetectaConexao(Context context){
