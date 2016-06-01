@@ -20,12 +20,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.imd030.sgr.adapter.RequisicaoAdapter;
 import com.imd030.sgr.builder.RequisicaoBuilder;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.StatusRequisicao;
 import com.imd030.sgr.utils.Constantes;
+import com.imd030.sgr.utils.DetectaConexao;
 
 import java.util.List;
 import java.util.Timer;
@@ -83,7 +85,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 finish();
                 break;
             case R.id.menu_sincronizar:
-                exibirMensagemSicronizacao();
+                DetectaConexao detectaConexao = new DetectaConexao(getApplicationContext());
+                if(detectaConexao.existeConexao()){
+                    exibirMensagemSicronizacao();
+                }
+                else{
+                    Toast toast = Toast.makeText(this, DetectaConexao.FALHA_CONEXAO,
+                            Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
                 break;
 
             default:
