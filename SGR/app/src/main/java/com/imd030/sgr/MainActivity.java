@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private RequisicaoAdapter requisicaoAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +49,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
+        
         //listView
         ListView listView = (ListView) findViewById(R.id.list_requisicao);
 
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         requisicaoAdapter = new RequisicaoAdapter(this,  requisicoes);
 
         listView.setAdapter(requisicaoAdapter);
+
+        listView.setOnItemClickListener(this);
 
         listView.setOnItemClickListener(this);
 

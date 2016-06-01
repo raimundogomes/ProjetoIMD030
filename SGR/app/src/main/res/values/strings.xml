@@ -3,7 +3,10 @@
     <string name="label_sincronizar">Sincronizar</string>
     <string name="exames">Exames:</string>
     <string name="title_activity_requisicao_detalhe">Requisição</string>
+<<<<<<< HEAD
     <string name="cancelar_requisicao">Cancelar</string>
     <string name="encaminhar_requisicao">Encaminhar</string>
+=======
+>>>>>>> branch 'master' of https://github.com/raimundogomes/ProjetoIMD030
     <string name="label_sair">Sair</string>
 </resources>
