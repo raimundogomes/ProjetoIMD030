@@ -19,6 +19,12 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
+    /**
+     * Construtor
+     * @param cns carteira nacional de saúde - cns.
+     * @param nome Nome do Paciente.
+     * @param numeroProntuario Número do paciente.
+     */
     public Paciente(String cns, String nome, String numeroProntuario) {
         this.cns = cns;
         this.nome = nome;

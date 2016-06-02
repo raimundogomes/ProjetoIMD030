@@ -44,7 +44,7 @@ public class RequisicaoDetalheActivity extends AppCompatActivity {
 
         Requisicao requisicao = (Requisicao)intent.getExtras().get(Constantes.REQUISICAO_DETALHE_ACTIVITY);
 
-        super.setTitle(super.getTitle() + " Nº " + requisicao.getNumeroFormatado());
+        super.setTitle( " Nº " + requisicao.getNumeroFormatado() + "                 "+requisicao.getStatus().getDescricao());
         criarDadosRequisicao(requisicao);
 
         ListView listView = (ListView) findViewById(R.id.list_exames);
@@ -54,21 +54,20 @@ public class RequisicaoDetalheActivity extends AppCompatActivity {
     }
 
     private void criarDadosRequisicao(Requisicao requisicao) {
-        //data de requisição
+
         TextView textViewDataRequesicao = (TextView) findViewById(R.id.text_dataRequisicao);
         textViewDataRequesicao.setText(DateUtils.obterDataPorExtenso(requisicao.getDataRequisicao()));
 
-        //status
-        TextView textViewStatus = (TextView) findViewById(R.id.text_status);
-        textViewStatus.setText(requisicao.getStatus().getDescricao());
+        TextView prontuario = (TextView) findViewById(R.id.text_prontuario);
+        prontuario.setText(requisicao.getPaciente().getNumeroProntuario());
+
+        TextView cns = (TextView) findViewById(R.id.text_cns);
+        cns.setText(requisicao.getPaciente().getCns());
 
         //paciente
         TextView textViewPaciente = (TextView) findViewById(R.id.text_paciente);
         textViewPaciente.setText(requisicao.getPaciente().getNome());
-//
-        //solicitante
-        TextView textViewSolicitante = (TextView) findViewById(R.id.text_exames);
-        textViewSolicitante.setText(requisicao.getExamesFormatados());
+
     }
 
 }

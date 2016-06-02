@@ -37,15 +37,15 @@ public class RequisicaoBuilder {
 
         requisicao.setNumero(numeroGerador++);
 
-        if(requisicao.getNumero()/2==0) {
+        if(requisicao.getNumero()%2==0) {
             requisicao.setStatus(StatusRequisicao.SOLICITADA);
         }
         else{
             requisicao.setStatus(StatusRequisicao.EXECUCAO);
         }
 
-        Paciente paciente = new Paciente();
-        paciente.setNome(nomePaciente);
+        Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31);
+
         requisicao.setPaciente(paciente);
 
         ExamesBulder examesBulder = new ExamesBulder();

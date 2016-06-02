@@ -30,6 +30,7 @@ import com.imd030.sgr.utils.Constantes;
 import com.imd030.sgr.utils.DetectaConexao;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.menu_sincronizar:
                 DetectaConexao detectaConexao = new DetectaConexao(getApplicationContext());
                 if(detectaConexao.existeConexao()){
+                    sicronizarRequisicoes(requisicoes);
                     exibirMensagemSicronizacao();
                 }
                 else{
@@ -102,6 +104,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void sicronizarRequisicoes(List<Requisicao> requisicoes) {
+        final Random myRandom = new Random();
+
+        int num = myRandom.nextInt(requisicoes.size()-1);
+        Requisicao requisicao =  requisicoes.get(num);
+
+
+        if(requisicao.getStatus()==StatusRequisicao.SOLICITADA){
+            requisicao.setStatus(StatusRequisicao.CANCELADA);
+        }
     }
 
     @Override
