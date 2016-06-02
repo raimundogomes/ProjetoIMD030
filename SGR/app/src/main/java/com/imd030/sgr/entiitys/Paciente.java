@@ -16,6 +16,8 @@ public class Paciente implements Serializable {
 
     private String numeroProntuario;
 
+    private String email;
+
     public Paciente() {
     }
 
@@ -24,11 +26,13 @@ public class Paciente implements Serializable {
      * @param cns carteira nacional de saúde - cns.
      * @param nome Nome do Paciente.
      * @param numeroProntuario Número do paciente.
+     * @param email e-mail paciente.
      */
-    public Paciente(String cns, String nome, String numeroProntuario) {
+    public Paciente(String cns, String nome, String numeroProntuario, String email) {
         this.cns = cns;
         this.nome = nome;
         this.numeroProntuario = numeroProntuario;
+        this.email = email;
     }
 
     public String getCns() {
@@ -53,5 +57,13 @@ public class Paciente implements Serializable {
 
     public void setNumeroProntuario(String numeroProntuario) {
         this.numeroProntuario = numeroProntuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

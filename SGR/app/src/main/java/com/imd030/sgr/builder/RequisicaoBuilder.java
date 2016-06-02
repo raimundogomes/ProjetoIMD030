@@ -18,18 +18,18 @@ public class RequisicaoBuilder {
 
     public List<Requisicao> gerarRequisicoes() {
         List<Requisicao> requisicoes = new ArrayList<Requisicao>();
-        requisicoes.add(criarRequisicao("Solicitante 1", "Machado de Assis"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "José de Alencar"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Lima Barreto"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Raquel de Queiroz"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Policarpo Quaresma"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Dom Casmurro"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "Pedro Alvez Cabral"));
-        requisicoes.add(criarRequisicao("Solicitante 1", "João da Silva"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "Machado de Assis", "machadoassis@email.com"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "José de Alencar", "josealencar@email.com"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "Lima Barreto", "limabarreto@email.com"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "Raquel de Queiroz", "raquequeiroz@email.com"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "Policarpo Quaresma", "policarpo@email.com"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "Dom Casmurro", "domcasmurro@email.com"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "Pedro Alvez Cabral", "pedrocabral@email.com"));
+        requisicoes.add(criarRequisicao("Solicitante 1", "João da Silva", "joaosilva@email.com"));
         return requisicoes;
     }
 
-    public Requisicao criarRequisicao(String nomeSolicitante, String nomePaciente){
+    public Requisicao criarRequisicao(String nomeSolicitante, String nomePaciente, String emailPaciente){
 
         Requisicao requisicao = new Requisicao();
 
@@ -44,7 +44,7 @@ public class RequisicaoBuilder {
             requisicao.setStatus(StatusRequisicao.EXECUCAO);
         }
 
-        Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31);
+        Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31, emailPaciente);
 
         requisicao.setPaciente(paciente);
 

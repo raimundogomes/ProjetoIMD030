@@ -27,6 +27,7 @@ import com.imd030.sgr.builder.RequisicaoBuilder;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.StatusRequisicao;
 import com.imd030.sgr.utils.Constantes;
+import com.imd030.sgr.utils.DateUtils;
 import com.imd030.sgr.utils.DetectaConexao;
 
 import java.util.List;
@@ -36,6 +37,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, DialogInterface.OnClickListener {
 
+    public static final String SUBJECT_EMAIL = "[SGR] - Encaminhamento de Requisição";
     private List<Requisicao> requisicoes = new RequisicaoBuilder().gerarRequisicoes();
 
     private Requisicao requisicaoSelecionada = null;
@@ -171,12 +173,36 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 cancelarRequisicao();
                 break;
             case R.id.menu_encaminhar_requisicao:
-                //TODO: implementar o emcaminhar requisição
+                encaminharRequisicao();
                 break;
             default:
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void encaminharRequisicao() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc822"); //configuração necessária para filtrar as aplicações que não enviam email
+        intent.putExtra(Intent.EXTRA_EMAIL, requisicaoSelecionada.getPaciente().getEmail());
+        intent.putExtra(Intent.EXTRA_SUBJECT, SUBJECT_EMAIL);
+        intent.putExtra(Intent.EXTRA_TEXT, montarCorpoEmail());
+
+        try {
+            startActivity(Intent.createChooser(intent, "Enviar e-mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "Não existe aplicativo que enviam e-mail instalados.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String montarCorpoEmail() {
+        String corpoEmail = new String();
+        corpoEmail = "Prezado(a) " + requisicaoSelecionada.getPaciente().getNome() + " segue as informações da sua requisição:" + "\n" +
+                     "Número da requisição: " + requisicaoSelecionada.getNumeroFormatado() + "\n" +
+                     "Data da requisição: " + DateUtils.obterDataPorExtenso(requisicaoSelecionada.getDataRequisicao()) + "\n" +
+                     "Status da requisição: " + requisicaoSelecionada.getStatus().getDescricao() + "\n" +
+                     "Exames: " + requisicaoSelecionada.getExamesFormatados();
+        return corpoEmail;
     }
 
     private void cancelarRequisicao() {
