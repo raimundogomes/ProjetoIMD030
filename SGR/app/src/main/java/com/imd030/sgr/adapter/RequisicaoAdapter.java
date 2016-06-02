@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.imd030.sgr.R;
@@ -59,4 +58,5 @@ public class RequisicaoAdapter extends ArrayAdapter<Requisicao>{
 
         return view;
     }
+
 }

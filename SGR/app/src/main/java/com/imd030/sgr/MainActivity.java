@@ -12,12 +12,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -30,15 +33,22 @@ import com.imd030.sgr.utils.Constantes;
 import com.imd030.sgr.utils.DateUtils;
 import com.imd030.sgr.utils.DetectaConexao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, DialogInterface.OnClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener,
+        DialogInterface.OnClickListener,
+        TextWatcher {
 
     public static final String SUBJECT_EMAIL = "[SGR] - Encaminhamento de Requisição";
+
     private List<Requisicao> requisicoes = new RequisicaoBuilder().gerarRequisicoes();
+
+    private List<Requisicao> requisicoesfiltradas;
 
     private Requisicao requisicaoSelecionada = null;
 
@@ -60,7 +70,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         registerForContextMenu(listView);
 
-        requisicaoAdapter = new RequisicaoAdapter(this,  requisicoes);
+        requisicoesfiltradas = ((List) ((ArrayList) requisicoes).clone());;
+
+        requisicaoAdapter = new RequisicaoAdapter(this,  requisicoesfiltradas);
 
         listView.setAdapter(requisicaoAdapter);
 
@@ -69,6 +81,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         listView.setOnItemClickListener(this);
 
         listView.setOnItemLongClickListener(this);
+
+        //edit search
+        EditText editSearch = (EditText) findViewById(R.id.edit_search);
+
+        editSearch.addTextChangedListener(this);
+
     }
 
     @Override
@@ -220,4 +238,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         requisicaoAdapter.notifyDataSetChanged();
         requisicaoSelecionada = null;
     }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        //TODO: pesquisar forma mais eficiente de realizar a consulta - ver Filterable
+
+        //texto digitado
+        String nomePaciente = s.toString().toLowerCase();
+
+        //limpa a lista
+        requisicoesfiltradas.clear();
+
+        //atualiza a lista
+        for(Requisicao requisicao: requisicoes){
+            if(requisicao.getPaciente().getNome().toLowerCase().contains(nomePaciente)){
+                requisicoesfiltradas.add(requisicao);
+            }
+        }
+
+        requisicaoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {}
 }
