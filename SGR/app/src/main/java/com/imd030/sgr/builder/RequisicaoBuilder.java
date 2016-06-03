@@ -41,7 +41,7 @@ public class RequisicaoBuilder {
             requisicao.setStatus(StatusRequisicao.SOLICITADA);
         }
         else{
-            requisicao.setStatus(StatusRequisicao.EXECUCAO);
+            requisicao.setStatus(StatusRequisicao.RECEBIDA_PELO_LABORATORIO);
         }
 
         Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31, emailPaciente, "987654321");
