@@ -3,19 +3,15 @@ package com.imd030.sgr;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.imd030.sgr.adapter.ExameAdapter;
+import com.imd030.sgr.entiitys.Email;
 import com.imd030.sgr.entiitys.Paciente;
-import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.utils.Constantes;
-import com.imd030.sgr.utils.DateUtils;
+
+import com.imd030.sgr.utils.EmailUtil;
 
 public class PacienteActivity extends AppCompatActivity {
 
@@ -62,4 +58,12 @@ public class PacienteActivity extends AppCompatActivity {
         startActivity(callIntent);
     }
 
+    public void enviarEmail(View v){
+
+        Email email = new Email(new  String[]{paciente.getEmail()}, "assunto", "conteudo");
+
+        Intent intentEmail =  new EmailUtil().enviarEmail(email);
+
+        startActivity(intentEmail);
+    }
 }
