@@ -68,6 +68,9 @@ public class RequisicaoDetalheActivity extends AppCompatActivity {
         TextView textViewPaciente = (TextView) findViewById(R.id.text_paciente);
         textViewPaciente.setText(requisicao.getPaciente().getNome());
 
+        TextView telefonePaciente = (TextView) findViewById(R.id.text_fone);
+        telefonePaciente.setText(requisicao.getPaciente().getTelefone());
+
     }
 
 }

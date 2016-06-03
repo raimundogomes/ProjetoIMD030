@@ -62,9 +62,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         //listView
         ListView listView = (ListView) findViewById(R.id.list_requisicao);
 
@@ -193,10 +190,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.menu_encaminhar_requisicao:
                 encaminharRequisicao();
                 break;
+
+            case R.id.menu_dados_paciente:
+                visualizarDadosPaciente();
+                break;
             default:
                 break;
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void visualizarDadosPaciente() {
+        Intent acao = new Intent(MainActivity.this, PacienteActivity.class);
+
+        acao.putExtra(Constantes.DADOS_PACIENTE_ACTIVITY, requisicaoSelecionada.getPaciente());
+
+        startActivity(acao);
+
     }
 
     private void encaminharRequisicao() {

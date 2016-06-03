@@ -44,7 +44,7 @@ public class RequisicaoBuilder {
             requisicao.setStatus(StatusRequisicao.EXECUCAO);
         }
 
-        Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31, emailPaciente);
+        Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31, emailPaciente, "987654321");
 
         requisicao.setPaciente(paciente);
 

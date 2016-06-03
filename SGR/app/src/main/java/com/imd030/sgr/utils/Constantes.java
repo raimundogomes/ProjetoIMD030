@@ -6,4 +6,5 @@ package com.imd030.sgr.utils;
 public final class Constantes {
 
     public final static String REQUISICAO_DETALHE_ACTIVITY = "REQUISICAO_DETALHE_ACTIVITY";
+    public static final String DADOS_PACIENTE_ACTIVITY = "DADOS_PACIENTE_ACTIVITY";
 }

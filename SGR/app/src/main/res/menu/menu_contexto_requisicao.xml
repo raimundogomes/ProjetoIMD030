@@ -9,4 +9,8 @@
         android:id="@+id/menu_encaminhar_requisicao"
         android:title="@string/encaminhar_requisicao"/>
 
+    <item
+        android:id="@+id/menu_dados_paciente"
+        android:title="@string/dados_paciente"/>
+
 </menu>
