@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.imd030.sgr.RequisicaoDetalheActivity"
+    tools:showIn="@layout/activity_requisicao_detalhe"
+    android:orientation="vertical">
+
+
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1,2" >
+
+        <TableRow>
+            <TextView android:id="@+id/label_paciente" android:text="Paciente " android:textStyle="bold"/>
+            <TextView android:id="@+id/label_fone" android:text="Telefone "
+                 android:textStyle="bold"/>
+
+
+        </TableRow>
+
+        <TableRow>
+            <TextView  android:id="@+id/text_paciente"/>
+            <TextView android:drawableLeft="@drawable/call2"  android:id="@+id/text_fone" android:onClick="telefonar"/>
+        </TableRow>
+
+        <TableRow android:layout_marginTop="15dp">
+            <TextView android:layout_gravity="left" android:text="Prontuário " android:textStyle="bold"/>
+            <TextView android:text="CNS" android:gravity="left" android:textStyle="bold"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:id="@+id/text_prontuario" android:layout_gravity="left" />
+            <TextView android:id="@+id/text_cns" android:layout_gravity="left" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="5dp">
+            <TextView android:layout_gravity="left" android:text="E-mail" android:textStyle="bold"/>
+        </TableRow>
+        <TextView android:id="@+id/text_email" android:layout_gravity="left" />
+    </TableLayout>
+
+
+
+</LinearLayout>
