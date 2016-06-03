@@ -19,4 +19,8 @@ public class EmailUtil {
 
         return Intent.createChooser(intent, "Enviar e-mail...");
     }
+
+    public String getMensagemFalha() {
+        return "Não existe aplicativo que enviam e-mail instalados.";
+    }
 }

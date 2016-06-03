@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.imd030.sgr.entiitys.Email;
 import com.imd030.sgr.entiitys.Paciente;
@@ -62,8 +63,16 @@ public class PacienteActivity extends AppCompatActivity {
 
         Email email = new Email(new  String[]{paciente.getEmail()}, "assunto", "conteudo");
 
-        Intent intentEmail =  new EmailUtil().enviarEmail(email);
 
-        startActivity(intentEmail);
+        EmailUtil emailUtil = new EmailUtil();
+        Intent intentEmail =  emailUtil.enviarEmail(email);
+
+        try{
+            startActivity(intentEmail);
+        } catch (android.content.ActivityNotFoundException ex) {
+            
+           Toast.makeText(this,emailUtil.getMensagemFalha() , Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
