@@ -45,7 +45,7 @@ public class PacienteActivity extends AppCompatActivity {
         nome.setText(paciente.getNome());
 
         TextView telefone = (TextView) findViewById(R.id.text_fone);
-        telefone.setText("  "+paciente.getTelefone());
+        telefone.setText("  " + paciente.getTelefone());
 
         TextView email = (TextView) findViewById(R.id.text_email);
         email.setText(paciente.getEmail());
@@ -70,7 +70,7 @@ public class PacienteActivity extends AppCompatActivity {
         try{
             startActivity(intentEmail);
         } catch (android.content.ActivityNotFoundException ex) {
-            
+
            Toast.makeText(this,emailUtil.getMensagemFalha() , Toast.LENGTH_SHORT).show();
         }
 
