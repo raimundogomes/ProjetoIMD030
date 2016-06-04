@@ -47,6 +47,9 @@ public class ExameAdapter extends ArrayAdapter<Exame> {
         TextView situacaoExame = (TextView) view.findViewById(R.id.text_situacao_exame);
         situacaoExame.setText(exame.getSituacaoAmostra());
 
+        TextView resultadoExame = (TextView) view.findViewById(R.id.text_resultado_exame);
+        resultadoExame.setText(exame.getResultado());
+
         return view;
     }
 }

@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Amostra implements Serializable {
 
-    private SituacaoAmostra situacaoAmostra = SituacaoAmostra.COLETADA;
+    private SituacaoAmostra situacaoAmostra = SituacaoAmostra.EM_ANALISE;
 
     private Date dataColeta = new Date();
 

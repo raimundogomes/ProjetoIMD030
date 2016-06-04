@@ -3,21 +3,30 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableLayout  android:stretchColumns="0,1,2,3"
+    <TableLayout  android:stretchColumns="0,1,2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TableRow>
             <TextView android:text="Tipo" android:textStyle="bold"/>
             <TextView android:text="Amostra"  android:textStyle="bold"/>
-            <TextView android:text="Coleta"  android:textStyle="bold"/>
         </TableRow>
 
         <TableRow>
             <TextView android:id="@+id/text_exame"/>
             <TextView android:id="@+id/text_situacao_exame"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="Resultado"  android:textStyle="bold"/>
+            <TextView android:text="Coleta"  android:textStyle="bold"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:id="@+id/text_resultado_exame"/>
             <TextView  android:id="@+id/text_data_coleta" />
 
         </TableRow>
+
     </TableLayout>
 
 

@@ -12,6 +12,8 @@ public class Exame implements Serializable{
 
     private Amostra amostra;
 
+    private ResultadoExame resultadoExame;
+
     public Exame(TipoExame tipo) {
         tipoExame = tipo;
         amostra = new Amostra();
@@ -45,9 +47,20 @@ public class Exame implements Serializable{
 
     public String getSituacaoAmostra() {
         if(amostra !=null){
-          return amostra.getSituacaoAmostra().toString();
+          return amostra.getSituacaoAmostra().getDescricao();
         }
 
         return "";
     }
+
+    public String getResultado(){
+
+        if(resultadoExame==null){
+            return "";
+        }
+
+        return resultadoExame.getDescricao();
+
+    }
+
 }
