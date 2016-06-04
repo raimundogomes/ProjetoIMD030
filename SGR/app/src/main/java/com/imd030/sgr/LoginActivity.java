@@ -42,7 +42,7 @@ public class LoginActivity extends Activity {
     		Editor editor = preferencias.edit();
     		editor.putBoolean(MANTER_CONECTADO, manterConectado.isChecked());
     		editor.commit();
-    			
+			finish();
     		startActivity(new Intent(this, MainActivity.class));
     	}
     	else{
