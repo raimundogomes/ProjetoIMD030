@@ -25,6 +25,8 @@ public class Requisicao implements Serializable {
 
     private List<Exame> exames;
 
+    private Date dataFim;
+
 
     public Requisicao() {
         numero++;
@@ -84,6 +86,14 @@ public class Requisicao implements Serializable {
 
     public void setNumero(long numero) {
         this.numero = numero;
+    }
+
+    public Date getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
     }
 
     public Laboratorio getLaboratorio() {
