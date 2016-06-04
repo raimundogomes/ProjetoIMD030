@@ -22,29 +22,27 @@
         android:stretchColumns="0,1,2" >
 
         <TableRow>
+            <TextView android:text="Nº requisição " android:textStyle="bold"/>
+            <TextView  android:text="Situação " android:textStyle="bold"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:id="@+id/text_numeroRequisicao" />
+            <TextView android:id="@+id/text_situacaoRequisicao"/>
+        </TableRow>
+        <TableRow android:layout_marginTop="10dp">
             <TextView android:id="@+id/label_paciente" android:text="Paciente " android:textStyle="bold"/>
-            <TextView android:id="@+id/label_fone" android:text="Fone " android:textStyle="bold"/>
-
-
+            <TextView android:text="Laboratório " android:textStyle="bold"/>
         </TableRow>
-             <TextView  android:id="@+id/text_paciente"/>
-             <TextView  android:id="@+id/text_fone"/>
-
         <TableRow>
+             <TextView  android:id="@+id/text_paciente"
+                 android:elegantTextHeight="true" android:onClick="telefonarPaciente"
+                 android:drawableLeft="@android:drawable/sym_action_call"/>
 
+             <TextView android:id="@+id/text_laboratorio" android:elegantTextHeight="true"
+                 android:drawableLeft="@android:drawable/sym_action_call"  android:onClick="telefonarLaboratorio"/>
         </TableRow>
-
-        <TableRow android:layout_marginTop="15dp">
-            <TextView android:layout_gravity="left" android:text="Prontuário " android:textStyle="bold"/>
-            <TextView android:text="CNS" android:gravity="left" android:textStyle="bold"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView android:id="@+id/text_prontuario" android:layout_gravity="left" />
-            <TextView android:id="@+id/text_cns" android:layout_gravity="left" />
-        </TableRow>
-
-        <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="10dp">
             <TextView android:layout_gravity="left" android:text="Data Início " android:textStyle="bold"/>
             <TextView android:text="Data Fim" android:gravity="left" android:textStyle="bold"/>
         </TableRow>
@@ -57,7 +55,7 @@
     </TableLayout>
 
 
-        <TextView
+    <TextView android:layout_marginTop="15dp"
             android:id="@+id/label_exames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

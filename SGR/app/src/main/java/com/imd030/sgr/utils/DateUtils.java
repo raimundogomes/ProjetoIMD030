@@ -1,5 +1,6 @@
 package com.imd030.sgr.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -18,6 +19,11 @@ public class DateUtils {
         return calendar.get(Calendar.DAY_OF_MONTH) + " de " +
                 meses[calendar.get(Calendar.MONTH)] + " de " +
                 calendar.get(Calendar.YEAR);
+    }
+
+    public static String obterData(Date data){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return format.format(data);
     }
 
 

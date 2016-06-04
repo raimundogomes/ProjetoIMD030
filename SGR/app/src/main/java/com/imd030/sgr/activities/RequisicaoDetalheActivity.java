@@ -1,6 +1,7 @@
 package com.imd030.sgr.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.imd030.sgr.R;
 import com.imd030.sgr.adapter.ExameAdapter;
@@ -23,6 +25,8 @@ import java.util.List;
 
 public class RequisicaoDetalheActivity extends AppCompatActivity {
 
+    private Requisicao requisicao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,21 +35,11 @@ public class RequisicaoDetalheActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
         Intent intent = getIntent();
 
-        Requisicao requisicao = (Requisicao)intent.getExtras().get(Constantes.REQUISICAO_DETALHE_ACTIVITY);
+        requisicao = (Requisicao)intent.getExtras().get(Constantes.REQUISICAO_DETALHE_ACTIVITY);
 
-        super.setTitle( " Nº " + requisicao.getNumeroFormatado() + "                 "+requisicao.getStatus().getDescricao());
+
         criarDadosRequisicao(requisicao);
 
         ListView listView = (ListView) findViewById(R.id.list_exames);
@@ -56,21 +50,45 @@ public class RequisicaoDetalheActivity extends AppCompatActivity {
 
     private void criarDadosRequisicao(Requisicao requisicao) {
 
+        TextView situacaoRequisicao = (TextView) findViewById(R.id.text_situacaoRequisicao);
+        situacaoRequisicao.setText(requisicao.getStatus().getDescricao());
+
+        TextView numeroRequisicao = (TextView) findViewById(R.id.text_numeroRequisicao);
+        numeroRequisicao.setText(requisicao.getNumeroFormatado());
+
         TextView textViewDataRequesicao = (TextView) findViewById(R.id.text_dataRequisicao);
-        textViewDataRequesicao.setText(DateUtils.obterDataPorExtenso(requisicao.getDataRequisicao()));
+        textViewDataRequesicao.setText(DateUtils.obterData(requisicao.getDataRequisicao()));
 
-        TextView prontuario = (TextView) findViewById(R.id.text_prontuario);
-        prontuario.setText(requisicao.getPaciente().getNumeroProntuario());
+        TextView nomePaciente = (TextView) findViewById(R.id.text_paciente);
+        nomePaciente.setText(requisicao.getPaciente().getNome());
 
-        TextView cns = (TextView) findViewById(R.id.text_cns);
-        cns.setText(requisicao.getPaciente().getCns());
+        TextView nomeLaboratio = (TextView) findViewById(R.id.text_laboratorio);
+        nomeLaboratio.setText(requisicao.getLaboratorio().getNome());
 
-        //paciente
-        TextView textViewPaciente = (TextView) findViewById(R.id.text_paciente);
-        textViewPaciente.setText(requisicao.getPaciente().getNome());
+    }
 
-        TextView telefonePaciente = (TextView) findViewById(R.id.text_fone);
-        telefonePaciente.setText(requisicao.getPaciente().getTelefone());
+    public void telefonar(String telefone){
+        if(telefone!=null) {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + telefone));
+            startActivity(callIntent);
+        }
+        else{
+            Toast.makeText(this, "Telefone não cadastrado!" , Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void telefonarLaboratorio(View v){
+        if(requisicao.getLaboratorio()!=null ) {
+            telefonar(requisicao.getPaciente().getTelefone());
+        }
+
+    }
+
+    public void telefonarPaciente(View v){
+        if(requisicao.getPaciente()!=null) {
+            telefonar(requisicao.getPaciente().getTelefone());
+        }
 
     }
 

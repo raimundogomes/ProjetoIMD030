@@ -21,7 +21,14 @@ public class Requisicao implements Serializable {
 
     private long numero = 1;
 
+    private Laboratorio laboratorio;
+
     private List<Exame> exames;
+
+
+    public Requisicao() {
+        numero++;
+    }
 
     public List<Exame> getExames() {
         return exames;
@@ -29,10 +36,6 @@ public class Requisicao implements Serializable {
 
     public void setExames(List<Exame> exames) {
         this.exames = exames;
-    }
-
-    public Requisicao() {
-        numero++;
     }
 
     public Requisicao(Date dataRequisicao, Solicitante solicitante, Paciente paciente, StatusRequisicao status) {
@@ -81,6 +84,14 @@ public class Requisicao implements Serializable {
 
     public void setNumero(long numero) {
         this.numero = numero;
+    }
+
+    public Laboratorio getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(Laboratorio laboratorio) {
+        this.laboratorio = laboratorio;
     }
 
     public String getNumeroFormatado() {

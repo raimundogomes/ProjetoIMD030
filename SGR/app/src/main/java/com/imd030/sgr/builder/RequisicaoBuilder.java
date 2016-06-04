@@ -1,5 +1,6 @@
 package com.imd030.sgr.builder;
 
+import com.imd030.sgr.entiitys.Laboratorio;
 import com.imd030.sgr.entiitys.Paciente;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.Solicitante;
@@ -47,6 +48,10 @@ public class RequisicaoBuilder {
         Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31, emailPaciente, "987654321");
 
         requisicao.setPaciente(paciente);
+
+        Laboratorio laboratorio = new Laboratorio("Microbiologia", "987654322");
+
+        requisicao.setLaboratorio(laboratorio);
 
         ExamesBulder examesBulder = new ExamesBulder();
 
