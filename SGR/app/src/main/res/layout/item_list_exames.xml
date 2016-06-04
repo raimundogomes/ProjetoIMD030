@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/text_exame" android:layout_marginLeft="3dp"
+
+    <TableLayout  android:stretchColumns="0,1,2,3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="tealklakdlakndka"/>
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView android:text="Tipo" android:textStyle="bold"/>
+            <TextView android:text="Amostra"  android:textStyle="bold"/>
+            <TextView android:text="Coleta"  android:textStyle="bold"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:id="@+id/text_exame"/>
+            <TextView android:id="@+id/text_situacao_exame"/>
+            <TextView  android:id="@+id/text_data_coleta" />
+
+        </TableRow>
+    </TableLayout>
+
 
 </LinearLayout>
