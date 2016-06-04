@@ -1,4 +1,4 @@
-package com.imd030.sgr;
+package com.imd030.sgr.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.imd030.sgr.R;
 import com.imd030.sgr.entiitys.Email;
 import com.imd030.sgr.entiitys.Paciente;
 import com.imd030.sgr.utils.Constantes;

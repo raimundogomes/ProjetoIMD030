@@ -1,4 +1,4 @@
-package com.imd030.sgr;
+package com.imd030.sgr.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.imd030.sgr.R;
 
 public class LoginActivity extends Activity {
     private static final String MANTER_CONECTADO = "manter_conectado";

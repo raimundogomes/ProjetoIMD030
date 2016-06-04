@@ -1,4 +1,4 @@
-package com.imd030.sgr;
+package com.imd030.sgr.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.imd030.sgr.R;
 import com.imd030.sgr.adapter.ExameAdapter;
 import com.imd030.sgr.adapter.RequisicaoAdapter;
 import com.imd030.sgr.builder.RequisicaoBuilder;
