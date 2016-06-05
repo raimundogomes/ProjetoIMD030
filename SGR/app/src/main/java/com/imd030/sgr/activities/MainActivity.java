@@ -23,11 +23,13 @@ import com.imd030.sgr.R;
 import com.imd030.sgr.adapter.RequisicaoAdapter;
 import com.imd030.sgr.builder.RequisicaoBuilder;
 import com.imd030.sgr.comparator.RequisicaoComparator;
+import com.imd030.sgr.entiitys.Email;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.StatusRequisicao;
 import com.imd030.sgr.utils.Constantes;
 import com.imd030.sgr.utils.DateUtils;
 import com.imd030.sgr.utils.DetectaConexao;
+import com.imd030.sgr.utils.EmailUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -249,16 +251,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void encaminharRequisicao() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("message/rfc822"); //configuração necessária para filtrar as aplicações que não enviam email
-        intent.putExtra(Intent.EXTRA_EMAIL, requisicaoSelecionada.getPaciente().getEmail());
-        intent.putExtra(Intent.EXTRA_SUBJECT, SUBJECT_EMAIL);
-        intent.putExtra(Intent.EXTRA_TEXT, montarCorpoEmail());
+        if(requisicaoSelecionada.getPaciente().getEmail()!=null){
+            Email email = new Email(new  String[]{requisicaoSelecionada.getPaciente().getEmail()}, SUBJECT_EMAIL, montarCorpoEmail());
+            EmailUtil emailUtil = new EmailUtil();
+            Intent intentEmail =  emailUtil.enviarEmail(email);
 
-        try {
-            startActivity(Intent.createChooser(intent, "Enviar e-mail..."));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "Não existe aplicativo que enviam e-mail instalados.", Toast.LENGTH_SHORT).show();
+            try{
+                startActivity(intentEmail);
+            } catch (android.content.ActivityNotFoundException ex) {
+
+                Toast.makeText(this,emailUtil.getMensagemFalha() , Toast.LENGTH_SHORT).show();
+            }
+        }
+        else{
+            Toast.makeText(this, "Paciente não possui e-mail." , Toast.LENGTH_SHORT).show();
         }
     }
 

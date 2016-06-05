@@ -62,17 +62,22 @@ public class PacienteActivity extends AppCompatActivity {
 
     public void enviarEmail(View v){
 
-        Email email = new Email(new  String[]{paciente.getEmail()}, "assunto", "conteudo");
+        if(paciente.getEmail()!=null){
+            Email email = new Email(new  String[]{paciente.getEmail()}, "", "");
 
+            EmailUtil emailUtil = new EmailUtil();
+            Intent intentEmail =  emailUtil.enviarEmail(email);
 
-        EmailUtil emailUtil = new EmailUtil();
-        Intent intentEmail =  emailUtil.enviarEmail(email);
+            try{
+                startActivity(intentEmail);
+            } catch (android.content.ActivityNotFoundException ex) {
 
-        try{
-            startActivity(intentEmail);
-        } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this,emailUtil.getMensagemFalha() , Toast.LENGTH_SHORT).show();
+            }
+        }
 
-           Toast.makeText(this,emailUtil.getMensagemFalha() , Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(this, "Paciente não possui e-mail." , Toast.LENGTH_SHORT).show();
         }
 
     }
