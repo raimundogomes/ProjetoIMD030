@@ -9,6 +9,10 @@ public final class Constantes {
     public static final String DADOS_PACIENTE_ACTIVITY = "DADOS_PACIENTE_ACTIVITY";
     public final static String CONFIGURACAO_ACTIVITY = "CONFIGURACAO_ACTIVITY";
 
+    public static final String CONFIGURACAO_CRITERIO_SELECIONADO = "CONFIGURACAO_CRITERIO_SELECIONADO";
+
+    public static final String CONFIGURACAO_CONECTADO = "CONFIGURACAO_CONECTADO";
+
     public static final int CRITERIO_NUMERO_REQUISICAO = 0;
     public static final int CRITERIO_DATA_REQUISICAO = 1;
     public static final int CRITERIO_NOME_PACIENTE = 2;

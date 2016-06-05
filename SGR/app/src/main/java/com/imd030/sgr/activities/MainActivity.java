@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -68,7 +69,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         requisicoesfiltradas = ((List) ((ArrayList) requisicoes).clone());
 
-        Collections.sort(requisicoesfiltradas, new RequisicaoComparator(criterioOrdenacaoSelecionado));
+        SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+
+        int configuracaoOrdenacao = preferencias.getInt(Constantes.CONFIGURACAO_CRITERIO_SELECIONADO, criterioOrdenacaoSelecionado);
+
+        Collections.sort(requisicoesfiltradas, new RequisicaoComparator(configuracaoOrdenacao));
 
         requisicaoAdapter = new RequisicaoAdapter(this,  requisicoesfiltradas);
 
@@ -136,6 +141,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 if(resultCode == RESULT_OK){
                     criterioOrdenacaoSelecionado = (int) data.getSerializableExtra(Constantes.CONFIGURACAO_ACTIVITY);
                     Collections.sort(requisicoesfiltradas, new RequisicaoComparator(criterioOrdenacaoSelecionado));
+
+                    salvarConfiguracaoOrdenacao();
+
                     requisicaoAdapter.notifyDataSetChanged();
                 }
                 break;
@@ -143,6 +151,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void salvarConfiguracaoOrdenacao() {
+        SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.putInt (Constantes.CONFIGURACAO_CRITERIO_SELECIONADO, criterioOrdenacaoSelecionado);
+        editor.commit();
     }
 
     private void sicronizarRequisicoes(List<Requisicao> requisicoes) {
