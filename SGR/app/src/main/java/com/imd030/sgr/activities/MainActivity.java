@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.imd030.sgr.R;
 import com.imd030.sgr.adapter.RequisicaoAdapter;
 import com.imd030.sgr.builder.RequisicaoBuilder;
+import com.imd030.sgr.comparator.RequisicaoComparator;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.entiitys.StatusRequisicao;
 import com.imd030.sgr.utils.Constantes;
@@ -28,6 +29,8 @@ import com.imd030.sgr.utils.DateUtils;
 import com.imd030.sgr.utils.DetectaConexao;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private RequisicaoAdapter requisicaoAdapter;
 
+    private int criterioOrdenacaoSelecionado = Constantes.CRITERIO_DATA_REQUISICAO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +66,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         registerForContextMenu(listView);
 
-        requisicoesfiltradas = ((List) ((ArrayList) requisicoes).clone());;
+        requisicoesfiltradas = ((List) ((ArrayList) requisicoes).clone());
+
+        Collections.sort(requisicoesfiltradas, new RequisicaoComparator(criterioOrdenacaoSelecionado));
 
         requisicaoAdapter = new RequisicaoAdapter(this,  requisicoesfiltradas);
 
         listView.setAdapter(requisicaoAdapter);
-
-        listView.setOnItemClickListener(this);
 
         listView.setOnItemClickListener(this);
 
@@ -107,14 +112,37 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             Toast.LENGTH_LONG);
                     toast.show();
                 }
-
                 break;
-
+            case R.id.menu_configuracoes:
+                abrirConfiguracoes();
+                break;
             default:
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void abrirConfiguracoes() {
+        Intent intent = new Intent(this, ConfiguracoesActivity.class);
+        intent.putExtra(Constantes.CONFIGURACAO_ACTIVITY, criterioOrdenacaoSelecionado);
+        startActivityForResult(intent, Constantes.INDICE_ACTIVITY_CONFIGURACOES);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case Constantes.INDICE_ACTIVITY_CONFIGURACOES:
+                if(resultCode == RESULT_OK){
+                    criterioOrdenacaoSelecionado = (int) data.getSerializableExtra(Constantes.CONFIGURACAO_ACTIVITY);
+                    Collections.sort(requisicoesfiltradas, new RequisicaoComparator(criterioOrdenacaoSelecionado));
+                    requisicaoAdapter.notifyDataSetChanged();
+                }
+                break;
+            default:
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void sicronizarRequisicoes(List<Requisicao> requisicoes) {
@@ -127,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(requisicao.getStatus()==StatusRequisicao.SOLICITADA){
             requisicao.setStatus(StatusRequisicao.CANCELADA);
         }
+
+        Collections.sort(requisicoesfiltradas, new RequisicaoComparator(criterioOrdenacaoSelecionado));
     }
 
     @Override

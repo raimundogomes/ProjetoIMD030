@@ -13,9 +13,12 @@
     <string name="label_sair">Sair</string>
     <string name="dados_paciente">Dados do Paciente</string>
     <string name="numero_requisicao">Nº requisição</string>
+    <string name="data_requisicao">Data da requisição</string>
     <string name="situacao_requisicao">Situação</string>
     <string name="paciente">Paciente</string>
+    <string name="nome_paciente">Nome do paciente</string>
     <string name="laboratorio">Laboratório</string>
     <string name="data_inicio">Data Início</string>
     <string name="data_fim">Data Fim</string>
+    <string name="label_configuracoes">Configurações</string>
 </resources>

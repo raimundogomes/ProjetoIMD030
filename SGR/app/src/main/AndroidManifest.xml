@@ -30,6 +30,8 @@
             android:name=".activities.RequisicaoDetalheActivity"
             android:label="@string/title_activity_requisicao_detalhe"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity  android:name=".activities.ConfiguracoesActivity"></activity>
     </application>
 
 </manifest>
