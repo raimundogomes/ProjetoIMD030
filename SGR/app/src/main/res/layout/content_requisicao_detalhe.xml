@@ -41,8 +41,8 @@
                  android:drawableStart="@android:drawable/sym_action_call"  android:onClick="telefonarLaboratorio"/>
         </TableRow>
         <TableRow android:layout_marginTop="6dp">
-            <TextView android:text="@string/data_inicio" android:textStyle="bold"/>
-            <TextView android:text="@string/data_fim"  android:textStyle="bold"/>
+            <TextView android:text="@string/data_requisicao" android:textStyle="bold"/>
+            <TextView android:text="@string/data_entrega"  android:textStyle="bold"/>
         </TableRow>
         <TableRow>
 
