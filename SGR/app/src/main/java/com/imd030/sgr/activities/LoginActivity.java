@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.imd030.sgr.R;
+import com.imd030.sgr.utils.Constantes;
 
 public class LoginActivity extends Activity {
     private static final String MANTER_CONECTADO = "manter_conectado";
@@ -26,13 +27,17 @@ public class LoginActivity extends Activity {
         usuario = (EditText) findViewById(R.id.usuario);
         senha = (EditText) findViewById(R.id.senha);
         manterConectado = (CheckBox) findViewById(R.id.manterConectado);
-        
-        SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
-        boolean conectado = preferencias.getBoolean(MANTER_CONECTADO, false);
-        
-        if(conectado){
-        	startActivity(new Intent(this, MainActivity.class));
-        }
+
+//		if(savedInstanceState==null) {
+
+			SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+			boolean conectado = preferencias.getBoolean(Constantes.CONFIGURACAO_CONECTADO, false);
+
+			if (conectado) {
+				finish();
+				startActivity(new Intent(this, ListaRequisicaoActivity.class));
+			}
+//		}
     }
     
     public void entrarOnClick(View v){
@@ -40,12 +45,12 @@ public class LoginActivity extends Activity {
     	String senhaInformada = senha.getText().toString();
     	
     	if("android".equals(usuarioInformado)  && "imd@2016".equals(senhaInformada)){
-    		SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+    		SharedPreferences preferencias = getPreferences(MODE_MULTI_PROCESS);
     		Editor editor = preferencias.edit();
-    		editor.putBoolean(MANTER_CONECTADO, manterConectado.isChecked());
+    		editor.putBoolean(Constantes.CONFIGURACAO_CONECTADO, manterConectado.isChecked());
     		editor.commit();
 			finish();
-    		startActivity(new Intent(this, MainActivity.class));
+    		startActivity(new Intent(this, ListaRequisicaoActivity.class));
     	}
     	else{
     		String mensagemErro = getString(R.string.erro_autenticacao);
@@ -53,4 +58,9 @@ public class LoginActivity extends Activity {
     		toast.show();
     	}
     }
+
+	protected void onSaveInstanceState(Bundle outState){
+		super.onSaveInstanceState(outState);
+
+	}
 }

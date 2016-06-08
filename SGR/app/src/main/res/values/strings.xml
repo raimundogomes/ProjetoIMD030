@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SGR</string>
+    <string name="app_name">SGR - Sistema de gerenciamento de requisições</string>
     <string name="usuario">Usuário</string>
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
@@ -7,7 +7,8 @@
     <string name="manter_conectado">Manter conectado</string>
     <string name="label_sincronizar">Sincronizar</string>
     <string name="exames">Exames:</string>
-    <string name="title_activity_requisicao_detalhe">Requisição</string>
+    <string name="label_requisicoes">Requisições</string>
+    <string name="label_nova_requisicao">Nova Requisição</string>
     <string name="cancelar_requisicao">Cancelar</string>
     <string name="encaminhar_requisicao">Encaminhar</string>
     <string name="label_sair">Sair</string>
@@ -20,4 +21,6 @@
     <string name="data_requisicao">Data da requisição</string>
     <string name="data_entrega">Data da entrega</string>
     <string name="label_configuracoes">Configurações</string>
+    <string name="label_desconectar">Desconectar</string>
+    <string name="label_requisicao">Requisição</string>
 </resources>

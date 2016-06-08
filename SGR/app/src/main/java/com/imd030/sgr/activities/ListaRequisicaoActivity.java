@@ -1,13 +1,12 @@
 package com.imd030.sgr.activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ContextMenu;
@@ -32,14 +31,13 @@ import com.imd030.sgr.utils.DetectaConexao;
 import com.imd030.sgr.utils.EmailUtil;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
+public class ListaRequisicaoActivity extends Activity implements AdapterView.OnItemClickListener,
         AdapterView.OnItemLongClickListener,
         DialogInterface.OnClickListener,
         TextWatcher {
@@ -60,9 +58,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setTitle(super.getTitle() + " - Requisições");
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_requisicoes);
 
         //listView
         ListView listView = (ListView) findViewById(R.id.list_requisicao);
@@ -123,11 +120,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.menu_configuracoes:
                 abrirConfiguracoes();
                 break;
+            case R.id.menu_desconectar:
+                desconectar();
             default:
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void desconectar() {
+        SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.putBoolean(Constantes.CONFIGURACAO_CONECTADO, false);
+        editor.remove(Constantes.CONFIGURACAO_CONECTADO);
+        editor.commit();
+
+
+        boolean t = preferencias.getBoolean(Constantes.CONFIGURACAO_CONECTADO, false);
+
+        finish();;
     }
 
     private void abrirConfiguracoes() {
@@ -182,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Requisicao requisicaSelecionada = requisicoes.get(position);
 
-        Intent acao = new Intent(MainActivity.this, RequisicaoDetalheActivity.class);
+        Intent acao = new Intent(ListaRequisicaoActivity.this, DetalheRequisicaoActivity.class);
 
         acao.putExtra(Constantes.REQUISICAO_DETALHE_ACTIVITY, requisicaSelecionada);
 
@@ -192,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void exibirMensagemSicronizacao() {
 
-       final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+       final ProgressDialog dialog = new ProgressDialog(ListaRequisicaoActivity.this);
        dialog.setTitle("Sincronizando as requisições...");
        dialog.setMessage("Aguarde, por favor.");
        dialog.setIndeterminate(true);
@@ -242,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void visualizarDadosPaciente() {
-        Intent acao = new Intent(MainActivity.this, PacienteActivity.class);
+        Intent acao = new Intent(ListaRequisicaoActivity.this, PacienteActivity.class);
 
         acao.putExtra(Constantes.DADOS_PACIENTE_ACTIVITY, requisicaoSelecionada.getPaciente());
 

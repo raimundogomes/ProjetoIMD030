@@ -1,9 +1,9 @@
 package com.imd030.sgr.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +15,7 @@ import com.imd030.sgr.utils.Constantes;
 
 import com.imd030.sgr.utils.EmailUtil;
 
-public class PacienteActivity extends AppCompatActivity {
+public class PacienteActivity extends Activity {
 
     private Paciente paciente;
 
@@ -23,7 +23,7 @@ public class PacienteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.dados_paciente);
+        setContentView(R.layout.dados_paciente_activity);
 
         Intent intent = getIntent();
 

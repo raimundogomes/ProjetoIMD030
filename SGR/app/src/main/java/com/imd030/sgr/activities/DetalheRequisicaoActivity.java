@@ -1,12 +1,9 @@
 package com.imd030.sgr.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,16 +11,11 @@ import android.widget.Toast;
 
 import com.imd030.sgr.R;
 import com.imd030.sgr.adapter.ExameAdapter;
-import com.imd030.sgr.adapter.RequisicaoAdapter;
-import com.imd030.sgr.builder.RequisicaoBuilder;
-import com.imd030.sgr.entiitys.Exame;
 import com.imd030.sgr.entiitys.Requisicao;
 import com.imd030.sgr.utils.Constantes;
 import com.imd030.sgr.utils.DateUtils;
 
-import java.util.List;
-
-public class RequisicaoDetalheActivity extends AppCompatActivity {
+public class DetalheRequisicaoActivity extends Activity {
 
     private Requisicao requisicao;
 
@@ -31,9 +23,7 @@ public class RequisicaoDetalheActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_requisicao_detalhe);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.detalhe_requisicao_activity);
 
         Intent intent = getIntent();
 
