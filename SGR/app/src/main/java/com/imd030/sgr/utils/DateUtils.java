@@ -26,5 +26,14 @@ public class DateUtils {
         return format.format(data);
     }
 
+    public static String obterDataPorExtenso(int year, int monthOfYear, int dayOfMonth) {
+        return dayOfMonth + " de " + meses[monthOfYear] + " de " + year;
+    }
+
+    public static Date obterData(int year, int monthOfYear, int dayOfMonth) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.set(year, monthOfYear, dayOfMonth);
+        return calendar.getTime();
+    }
 
 }

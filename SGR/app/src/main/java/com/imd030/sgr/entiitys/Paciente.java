@@ -73,4 +73,9 @@ public class Paciente implements Serializable {
     public String getTelefone() {
         return telefone;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

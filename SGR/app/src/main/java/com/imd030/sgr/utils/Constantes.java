@@ -8,6 +8,7 @@ public final class Constantes {
     public final static String REQUISICAO_DETALHE_ACTIVITY = "REQUISICAO_DETALHE_ACTIVITY";
     public static final String DADOS_PACIENTE_ACTIVITY = "DADOS_PACIENTE_ACTIVITY";
     public final static String CONFIGURACAO_ACTIVITY = "CONFIGURACAO_ACTIVITY";
+    public final static String REQUISICAO_NOVA_ACTIVITY = "NOVA_REQUISICAO_ACTIVITY";
 
     public static final String CONFIGURACAO_CRITERIO_SELECIONADO = "CONFIGURACAO_CRITERIO_SELECIONADO";
 
@@ -19,4 +20,5 @@ public final class Constantes {
     public static final int CRITERIO_STATUS_REQUISICAO = 3;
 
     public static final int INDICE_ACTIVITY_CONFIGURACOES = 0;
+    public static final int INDICE_ACTIVITY_NOVA_REQUISICAO = 1;
 }

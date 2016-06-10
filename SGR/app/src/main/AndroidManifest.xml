@@ -30,6 +30,8 @@
           ></activity>
 
         <activity  android:name=".activities.ConfiguracoesActivity" android:label="@string/label_configuracoes"></activity>
+
+        <activity  android:name=".activities.NovaRequisicaoActivity" android:label="@string/label_nova_requisicao"></activity>
     </application>
 
 </manifest>

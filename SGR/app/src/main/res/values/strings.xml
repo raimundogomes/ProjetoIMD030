@@ -4,6 +4,7 @@
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
     <string name="erro_autenticacao">Usuário ou senha inválidos</string>
+    <string name="erro_preenchimento_obrigatorio">Os campos com * são de preenchimento obrigatório.</string>
     <string name="manter_conectado">Manter conectado</string>
     <string name="label_sincronizar">Sincronizar</string>
     <string name="exames">Exames:</string>

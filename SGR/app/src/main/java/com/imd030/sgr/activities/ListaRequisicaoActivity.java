@@ -122,6 +122,10 @@ public class ListaRequisicaoActivity extends Activity implements AdapterView.OnI
                 break;
             case R.id.menu_desconectar:
                 desconectar();
+                break;
+            case R.id.menu_nova_requisicao:
+                novaRequisicao();
+                break;
             default:
                 break;
         }
@@ -159,6 +163,17 @@ public class ListaRequisicaoActivity extends Activity implements AdapterView.OnI
                     salvarConfiguracaoOrdenacao();
 
                     requisicaoAdapter.notifyDataSetChanged();
+                }
+                break;
+            case Constantes.INDICE_ACTIVITY_NOVA_REQUISICAO:
+                if(resultCode == RESULT_OK){
+                    Requisicao novaRequisicao = (Requisicao) data.getSerializableExtra(Constantes.REQUISICAO_NOVA_ACTIVITY);
+                    requisicoes.add(novaRequisicao);
+                    requisicoesfiltradas.add(novaRequisicao);
+                    Collections.sort(requisicoes, new RequisicaoComparator(criterioOrdenacaoSelecionado));
+                    Collections.sort(requisicoesfiltradas, new RequisicaoComparator(criterioOrdenacaoSelecionado));
+                    requisicaoAdapter.notifyDataSetChanged();
+                    Toast.makeText(this, "Nova requisição inserida. Nº: " + novaRequisicao.getNumeroFormatado() , Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
@@ -204,23 +219,23 @@ public class ListaRequisicaoActivity extends Activity implements AdapterView.OnI
 
     public void exibirMensagemSicronizacao() {
 
-       final ProgressDialog dialog = new ProgressDialog(ListaRequisicaoActivity.this);
-       dialog.setTitle("Sincronizando as requisições...");
-       dialog.setMessage("Aguarde, por favor.");
-       dialog.setIndeterminate(true);
-       dialog.setCancelable(true);
-       dialog.show();
+        final ProgressDialog dialog = new ProgressDialog(ListaRequisicaoActivity.this);
+        dialog.setTitle("Sincronizando as requisições...");
+        dialog.setMessage("Aguarde, por favor.");
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(true);
+        dialog.show();
 
-      long delayInMillis = 2000;
-      Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    dialog.dismiss();
-                }
-            }, delayInMillis);
+        long delayInMillis = 2000;
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        }, delayInMillis);
 
-        }
+    }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -283,10 +298,10 @@ public class ListaRequisicaoActivity extends Activity implements AdapterView.OnI
     private String montarCorpoEmail() {
         String corpoEmail = new String();
         corpoEmail = "Prezado(a) " + requisicaoSelecionada.getPaciente().getNome() + " segue as informações da sua requisição:" + "\n" +
-                     "Número da requisição: " + requisicaoSelecionada.getNumeroFormatado() + "\n" +
-                     "Data da requisição: " + DateUtils.obterDataPorExtenso(requisicaoSelecionada.getDataRequisicao()) + "\n" +
-                     "Status da requisição: " + requisicaoSelecionada.getStatus().getDescricao() + "\n" +
-                     "Exames: " + requisicaoSelecionada.getExamesFormatados();
+                "Número da requisição: " + requisicaoSelecionada.getNumeroFormatado() + "\n" +
+                "Data da requisição: " + DateUtils.obterDataPorExtenso(requisicaoSelecionada.getDataRequisicao()) + "\n" +
+                "Status da requisição: " + requisicaoSelecionada.getStatus().getDescricao() + "\n" +
+                "Exames: " + requisicaoSelecionada.getExamesFormatados();
         return corpoEmail;
     }
 
@@ -331,4 +346,9 @@ public class ListaRequisicaoActivity extends Activity implements AdapterView.OnI
 
     @Override
     public void afterTextChanged(Editable s) {}
+
+    public void novaRequisicao() {
+        Intent intent = new Intent(this, NovaRequisicaoActivity.class);
+        startActivityForResult(intent, Constantes.INDICE_ACTIVITY_NOVA_REQUISICAO);
+    }
 }
