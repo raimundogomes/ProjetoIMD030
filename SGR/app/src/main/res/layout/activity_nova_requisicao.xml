@@ -18,7 +18,8 @@
             android:id="@+id/txtNomePaciente"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Paciente*"/>
+            android:text="Paciente*"
+            android:textStyle="bold"/>
 
         <AutoCompleteTextView
             android:id="@+id/pacientes"
@@ -37,11 +38,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <TextView
+            android:id="@+id/txtExames"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Exames"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
         <CheckBox
             android:id="@+id/checkBoxExameSangue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exame de Sangue"/>
+            android:text="Sangue"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -55,12 +64,11 @@
                 android:visibility="invisible"/>
 
             <EditText
-                android:drawableLeft="@android:drawable/ic_menu_my_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:ems="10"
-                android:hint="Data da amostra"
+                android:hint="Data da coleta"
                 android:id="@+id/editTextDataAmostraExameSangue"
                 android:editable="false"
                 android:visibility="invisible"/>
@@ -70,7 +78,7 @@
             android:id="@+id/checkBoxExameUrina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exame de Urina"/>
+            android:text="Urina"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -88,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:ems="10"
-                android:hint="Data da amostra"
+                android:hint="Data da coleta"
                 android:id="@+id/editTextDataAmostraExameUrina"
                 android:editable="false"
                 android:visibility="invisible"/>
