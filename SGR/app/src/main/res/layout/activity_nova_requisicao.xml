@@ -60,8 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButtonCalendarioSangue"
-                android:src="@drawable/calendario"
-                android:visibility="invisible"/>
+                android:src="@drawable/calendario"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -70,8 +69,7 @@
                 android:ems="10"
                 android:hint="Data da coleta"
                 android:id="@+id/editTextDataAmostraExameSangue"
-                android:editable="false"
-                android:visibility="invisible"/>
+                android:editable="false" />
         </LinearLayout>
 
         <CheckBox
@@ -88,18 +86,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButtonCalendarioUrina"
-                android:src="@drawable/calendario"
-                android:visibility="invisible"/>
+                android:src="@drawable/calendario"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
+                android:inputType="none"
                 android:ems="10"
                 android:hint="Data da coleta"
                 android:id="@+id/editTextDataAmostraExameUrina"
-                android:editable="false"
-                android:visibility="invisible"/>
+                android:editable="false"/>
         </LinearLayout>
 
         <Button

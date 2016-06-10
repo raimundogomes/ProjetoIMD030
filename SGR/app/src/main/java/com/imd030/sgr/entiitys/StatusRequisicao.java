@@ -8,7 +8,7 @@ public enum StatusRequisicao {
     RECEBIDA_PELO_LABORATORIO(1, "Recebida pelo laboratório"),
     LAUDO_PARCIAL (2, "Laudo parcial"),
     CANCELADA (3, "Cancelada"),
-    LAUDO_DEFINITIVO(4, "LAUDO");
+    LAUDO_DEFINITIVO(4, "Realizado");
 
     private int codigo;
 

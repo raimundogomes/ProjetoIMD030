@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.imd030.sgr.entiitys.TipoExame;
 import com.imd030.sgr.utils.Constantes;
 import com.imd030.sgr.utils.DateUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +50,8 @@ public class NovaRequisicaoActivity extends Activity implements
 
     private static final String EDIT_SANGUE = "Sangue";
     private static final String EDIT_URINA = "Urina";
+    private static final String LABORATRIO = "Laboratorio";
+    private static final String PACIENTE = "Paciente";
 
     Laboratorio laboratorio1 = new Laboratorio("Microbiologia", "84987879798");
     Laboratorio laboratorio2 = new Laboratorio("Citologia", "22222222222");
@@ -136,39 +140,29 @@ public class NovaRequisicaoActivity extends Activity implements
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(EDIT_SANGUE, (String) txtDataAmostraExameSangue.getText());
-        outState.putString(EDIT_URINA, (String) txtDataAmostraExameUrina.getText());
+        outState.putString(EDIT_SANGUE, (String) txtDataAmostraExameSangue.getText().toString());
+        outState.putString(EDIT_URINA, (String) txtDataAmostraExameUrina.getText().toString());
+        outState.putInt(LABORATRIO, spinnerLaboratorio.getSelectedItemPosition());
+        outState.putSerializable(PACIENTE, pacienteSelecionado);
         super.onSaveInstanceState(outState);
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
         txtDataAmostraExameSangue.setText(savedInstanceState.getString(EDIT_SANGUE));
         txtDataAmostraExameUrina.setText(savedInstanceState.getString(EDIT_URINA));
+        pacienteSelecionado = (Paciente) savedInstanceState.getSerializable(PACIENTE);
+        spinnerLaboratorio.setSelection(savedInstanceState.getInt(LABORATRIO));
     }
 
     @Override
     public void onClick(View v) {
 
-        if(v == checkBoxSangue){
-            if(checkBoxSangue.isChecked()){
-                imgBtnCalendarioSangue.setVisibility(View.VISIBLE);
-                txtDataAmostraExameSangue.setVisibility(View.VISIBLE);
-            }else{
-                imgBtnCalendarioSangue.setVisibility(View.INVISIBLE);
-                txtDataAmostraExameSangue.setText("");
-                txtDataAmostraExameSangue.setVisibility(View.INVISIBLE);
-            }
-        } else if(v == checkBoxUrina){
-            if(checkBoxUrina.isChecked()){
-                imgBtnCalendarioUrina.setVisibility(View.VISIBLE);
-                txtDataAmostraExameUrina.setVisibility(View.VISIBLE);
-            }else{
-                imgBtnCalendarioUrina.setVisibility(View.INVISIBLE);
-                txtDataAmostraExameUrina.setText("");
-                txtDataAmostraExameUrina.setVisibility(View.INVISIBLE);
-            }
+        if(v == checkBoxSangue && !checkBoxSangue.isChecked()){
+            txtDataAmostraExameSangue.setText("");
+        }
+        else if(v == checkBoxUrina && !checkBoxUrina.isChecked()){
+            txtDataAmostraExameUrina.setText("");
         } else if(v == imgBtnCalendarioSangue){
             showDialog(ID_DATA_REQUISICAO_SANGUE);
         } else if(v == imgBtnCalendarioUrina){

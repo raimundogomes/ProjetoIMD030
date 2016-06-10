@@ -12,7 +12,25 @@ public class Exame implements Serializable{
 
     private Amostra amostra;
 
-    private ResultadoExame resultadoExame;
+    private ResultadoExame resultadoExame = ResultadoExame.ANALISE_NAO_REALIZADA;
+
+    private String resultadoCompleto ;
+
+    public String getResultadoCompleto() {
+        return resultadoCompleto;
+    }
+
+    public void setResultadoCompleto(String resultadoCompleto) {
+        this.resultadoCompleto = resultadoCompleto;
+    }
+
+    public ResultadoExame getResultadoExame() {
+        return resultadoExame;
+    }
+
+    public void setResultadoExame(ResultadoExame resultadoExame) {
+        this.resultadoExame = resultadoExame;
+    }
 
     public Exame(TipoExame tipo) {
         tipoExame = tipo;

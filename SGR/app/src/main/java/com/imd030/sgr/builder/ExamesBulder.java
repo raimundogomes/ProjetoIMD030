@@ -1,6 +1,8 @@
 package com.imd030.sgr.builder;
 
 import com.imd030.sgr.entiitys.Exame;
+import com.imd030.sgr.entiitys.ResultadoExame;
+import com.imd030.sgr.entiitys.SituacaoAmostra;
 import com.imd030.sgr.entiitys.TipoExame;
 
 import java.util.ArrayList;
@@ -21,6 +23,18 @@ public class ExamesBulder {
        return  adicionaExame(TipoExame.SANGUE);
 
     }
+
+    public Exame adicionaExameSangueResultadoDefinitivo( ){
+        Exame exame =   adicionaExame(TipoExame.SANGUE);
+        exame.setResultadoExame(ResultadoExame.NEGATIVO);
+        exame.getAmostra().setSituacaoAmostra(SituacaoAmostra.LIBERADA);
+
+        exame.setResultadoCompleto("Ausência de crescimento bacteriano na amostra analisada após 7 dias de incubação");
+        return exame;
+
+    }
+
+
 
     public Exame adicionaExameUrina(){
         return  adicionaExame( TipoExame.URINA);

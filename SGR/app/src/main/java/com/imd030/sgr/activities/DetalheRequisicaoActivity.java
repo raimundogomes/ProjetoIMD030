@@ -51,7 +51,7 @@ public class DetalheRequisicaoActivity extends Activity {
 
         if(requisicao.getDataFim()!=null){
             TextView dataFim = (TextView) findViewById(R.id.text_dataFinal);
-            textViewDataRequesicao.setText(DateUtils.obterData(requisicao.getDataFim()));
+            dataFim.setText(DateUtils.obterData(requisicao.getDataFim()));
         }
 
         TextView nomePaciente = (TextView) findViewById(R.id.text_paciente);

@@ -32,17 +32,27 @@ public class RequisicaoBuilder {
 
     public Requisicao criarRequisicao(String nomeSolicitante, String nomePaciente, String emailPaciente){
 
+        ExamesBulder examesBulder = new ExamesBulder();
+
         Requisicao requisicao = new Requisicao();
 
         requisicao.setDataRequisicao(new Date());
 
         requisicao.setNumero(numeroGerador++);
 
+        requisicao.setExames(examesBulder.getListaExames());
+
         if(requisicao.getNumero()%2==0) {
             requisicao.setStatus(StatusRequisicao.SOLICITADA);
+
+            requisicao.getExames().add(examesBulder.adicionaExameSangue());
+            requisicao.getExames().add(examesBulder.adicionaExameUrina());
         }
         else{
-            requisicao.setStatus(StatusRequisicao.RECEBIDA_PELO_LABORATORIO);
+            requisicao.setStatus(StatusRequisicao.LAUDO_DEFINITIVO);
+            requisicao.getExames().add(examesBulder.adicionaExameSangueResultadoDefinitivo());
+            requisicao.setDataFim(new Date());
+
         }
 
         Paciente paciente = new Paciente("0"+ numeroGerador+13, nomePaciente, "0"+ numeroGerador + 31, emailPaciente, "987654321");
@@ -52,14 +62,6 @@ public class RequisicaoBuilder {
         Laboratorio laboratorio = new Laboratorio("Microbiologia", "987654322");
 
         requisicao.setLaboratorio(laboratorio);
-
-        ExamesBulder examesBulder = new ExamesBulder();
-
-        requisicao.setExames(examesBulder.getListaExames());
-        requisicao.getExames().add(examesBulder.adicionaExameSangue());
-        requisicao.getExames().add(examesBulder.adicionaExameUrina());
-
-
 
         Solicitante solicitante = new Solicitante();
         solicitante.setNome(nomeSolicitante);
