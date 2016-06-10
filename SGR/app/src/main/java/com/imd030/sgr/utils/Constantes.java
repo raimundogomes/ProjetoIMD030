@@ -21,4 +21,6 @@ public final class Constantes {
 
     public static final int INDICE_ACTIVITY_CONFIGURACOES = 0;
     public static final int INDICE_ACTIVITY_NOVA_REQUISICAO = 1;
+
+    public static final String PREF_NAME = "LoginActivityPreferences";
 }

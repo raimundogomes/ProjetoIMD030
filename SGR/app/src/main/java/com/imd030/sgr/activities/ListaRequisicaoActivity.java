@@ -134,16 +134,13 @@ public class ListaRequisicaoActivity extends Activity implements AdapterView.OnI
     }
 
     private void desconectar() {
-        SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferencias.edit();
-        editor.putBoolean(Constantes.CONFIGURACAO_CONECTADO, false);
-        editor.remove(Constantes.CONFIGURACAO_CONECTADO);
-        editor.commit();
+        SharedPreferences sp = getSharedPreferences(Constantes.PREF_NAME, MODE_PRIVATE);
 
+        boolean b = sp.getBoolean(Constantes.CONFIGURACAO_CONECTADO, false);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear().commit();
 
-        boolean t = preferencias.getBoolean(Constantes.CONFIGURACAO_CONECTADO, false);
-
-        finish();;
+        finish();
     }
 
     private void abrirConfiguracoes() {

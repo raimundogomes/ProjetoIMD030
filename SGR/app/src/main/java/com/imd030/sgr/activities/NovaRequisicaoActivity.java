@@ -46,6 +46,9 @@ public class NovaRequisicaoActivity extends Activity implements
 
     public static final int ID_DATA_REQUISICAO_URINA = 1;
 
+    private static final String EDIT_SANGUE = "Sangue";
+    private static final String EDIT_URINA = "Urina";
+
     Laboratorio laboratorio1 = new Laboratorio("Microbiologia", "84987879798");
     Laboratorio laboratorio2 = new Laboratorio("Citologia", "22222222222");
 
@@ -129,6 +132,20 @@ public class NovaRequisicaoActivity extends Activity implements
         //salvar
         buttonSalvar = (Button) findViewById(R.id.buttonSalvar);
         buttonSalvar.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString(EDIT_SANGUE, (String) txtDataAmostraExameSangue.getText());
+        outState.putString(EDIT_URINA, (String) txtDataAmostraExameUrina.getText());
+        super.onSaveInstanceState(outState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        txtDataAmostraExameSangue.setText(savedInstanceState.getString(EDIT_SANGUE));
+        txtDataAmostraExameUrina.setText(savedInstanceState.getString(EDIT_URINA));
     }
 
     @Override
